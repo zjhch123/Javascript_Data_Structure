@@ -164,11 +164,3 @@ export default class Heap {
     return this.heapContainer.map(item => item.toString()).join(',')   
   }
 }
-
-// for(let i = 0; i < 10; i++) {
-//   const a = new Heap()
-//   for(let j = 0; j < 10; j++) {
-//     a.add(Math.floor(Math.random() * 10))
-//   }
-//   console.log(a.toString())
-// }
