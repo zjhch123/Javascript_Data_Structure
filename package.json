@@ -1,15 +1,19 @@
 {
-  "name": "data-strucr",
+  "name": "data-struct",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "ci": "npm run test -- --coverage",
+    "codecov": "codecov"
   },
+  "repository": "https://github.com/zjhch123/Javascript_Data_Structure",
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "codecov": "^3.0.4",
     "jest": "^23.1.0"
   },
   "dependencies": {

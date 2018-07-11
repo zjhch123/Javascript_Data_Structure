@@ -10,4 +10,8 @@ for test, just run
 npm run test
 ```
 
+for ci, just run
+```
+npm run ci
+```
 have fun!
