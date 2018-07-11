@@ -1,3 +1,5 @@
+![](https://travis-ci.org/zjhch123/Javascript_Data_Structure.svg?branch=master)
+
 wow! Javascript data structure!
 
 for start, just run
