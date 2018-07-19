@@ -6,6 +6,7 @@ export default class BinaryTreeNode {
     this.left = null
     this.right = null
     this.value = value
+    /** @var BinaryTreeNode */
     this.parent = null
 
     this.meta = new HashTable()
