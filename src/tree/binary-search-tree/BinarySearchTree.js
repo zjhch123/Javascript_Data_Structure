@@ -1,8 +1,8 @@
-import BinarySearchTreeNode from './BinarySearchTreeNode.js'
+import BinarySearchTreeNode from './BinarySearchTreeNode'
 
 export default class BinarySearchTree {
   constructor(nodeValueCompareFunction) {
-    this.root = new BinarySearchTreeNode()
+    this.root = new BinarySearchTreeNode(null, nodeValueCompareFunction)
 
     this.nodeComparator = nodeValueCompareFunction
   }
@@ -13,5 +13,13 @@ export default class BinarySearchTree {
 
   toString() {
     return this.root.toString()
+  }
+
+  remove(value) {
+    return this.root.remove(value);
+  }
+
+  contains(value) {
+    return this.root.contains(value);
   }
 }

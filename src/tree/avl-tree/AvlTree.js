@@ -1,4 +1,4 @@
-import BinarySearchTree from '../binary-search-tree/BinarySearchTreeNode'
+import BinarySearchTree from '../binary-search-tree/BinarySearchTree'
 import BinarySearchTreeNode from '../binary-search-tree/BinarySearchTreeNode';
 
 export default class AvlTree extends BinarySearchTree {
@@ -17,21 +17,20 @@ export default class AvlTree extends BinarySearchTree {
   }
 
   /**
-   * 
    * @param {BinarySearchTreeNode} node 
    */
   balance(node) {
     if (node.balanceFactor > 1) {
       if (node.left.balanceFactor > 0) {
         this.rotateLeftLeft(node)
-      } else {
+      } else if (node.left.balanceFactor < 0) {
         this.rotateLeftRight(node)
       }
     } 
     if (node.balanceFactor < -1) {
-      if (node.left.balanceFactor < 0) {
+      if (node.right.balanceFactor < 0) {
         this.rotateRightRight(node)
-      } else {
+      } else if (node.right.balanceFactor > 0) {
         this.rotateRightLeft(node)
       }
     }
@@ -60,22 +59,60 @@ export default class AvlTree extends BinarySearchTree {
    * @param {BinarySearchTreeNode} rootNode
    */
   rotateLeftRight(rootNode) {
+    const left = rootNode.left
+    rootNode.setLeft(null)
 
+    const leftRight = left.right
+    left.setRight(null)
+
+    if (leftRight.left) {
+      left.setRight(leftRight.left)
+      leftRight.setLeft(null)
+    }
+
+    rootNode.setLeft(leftRight)
+    leftRight.setLeft(left)
+
+    this.rotateLeftLeft(rootNode)
   }
 
   /**
    * @param {BinarySearchTreeNode} rootNode
    */
   rotateRightRight(rootNode) {
+    const right = rootNode.right
+    rootNode.setRight(null)
 
+    if (rootNode.parent) {
+      rootNode.parent.setRight(right)
+    } else if (rootNode === this.root) {
+      this.root = right
+    }
+
+    if (right.left) {
+      rootNode.setRight(right.left)
+    }
+
+    right.setLeft(rootNode)
   }
 
   /**
    * @param {BinarySearchTreeNode} rootNode
    */
   rotateRightLeft(rootNode) {
+    const right = rootNode.right
+    rootNode.setRight(null)
+    const rightLeft = right.left
+    right.setLeft(null)
 
+    if (rightLeft.right) {
+      right.setLeft(rightLeft.right)
+      rightLeft.setRight(null)
+    }
+
+    rootNode.setRight(rightLeft)
+    rightLeft.setRight(right)
+
+    this.rotateRightRight(rootNode)
   }
-
-
 }
